@@ -91,7 +91,7 @@ static int cmd_delete(const char *path, const char *service) {
     size_t len = strlen(service);
     int removed = 0;
     while (fgets(buf, sizeof buf, in)) {
-        if (!removed && strncmp(buf, service, len) == 0 && buf[len] == '|') {
+        if (strncmp(buf, service, len) == 0 && buf[len] == '|') {
             removed = 1;
             continue;
         }
@@ -112,11 +112,11 @@ static int cmd_delete(const char *path, const char *service) {
 }
 
 static void usage(void) {
-    fprintf(stderr, "usage: passmgr <add|list|search|delete> <file> [args]\n");
-    fprintf(stderr, "add: passmgr add file service user pass\n");
-    fprintf(stderr, "list: passmgr list file\n");
-    fprintf(stderr, "search: passmgr search file term\n");
-    fprintf(stderr, "delete: passmgr delete file service\n");
+    fprintf(stderr, "\nusage: ./passmgr <add|list|search|delete> [args]\n\n");
+    fprintf(stderr, "add: ./passmgr add service username password\n");
+    fprintf(stderr, "list: ./passmgr list\n");
+    fprintf(stderr, "search: ./passmgr search service\n");
+    fprintf(stderr, "delete: ./passmgr delete service\n");
 }
 
 int main(int argc, char **argv) {
